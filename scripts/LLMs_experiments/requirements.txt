@@ -1,0 +1,7 @@
+vllm
+bitsandbytes
+openai
+pandas
+matplotlib
+seaborn
+jupyter
