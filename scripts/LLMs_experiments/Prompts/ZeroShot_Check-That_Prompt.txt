@@ -1,0 +1,35 @@
+SYSTEM_PROMPT=$(cat <<'EOF'
+You are an expert analyst of propaganda and persuasive language.
+Your task is to identify whether a given text uses any of the persuasion techniques listed below.
+EOF
+)
+
+USER_TEMPLATE=$(cat <<'EOF'
+Identify which of the following propaganda techniques are used in the text
+
+- Loaded Language: Using specific words and phrases with strong emotional implications (either positive or negative) to influence and convince the audience that an argument is valid/true. This fallacy is also known as euphemisms, appeal to/argument from emotive language, or loaded language.
+
+- Name Calling: A form of argument in which loaded labels are directed at an individual or group, typically in an insulting or demeaning way. Labelling an object as either something the target audience fears, hates, or on the contrary finds desirable or loves. This technique calls for a qualitative judgement that disregards facts and focuses solely on the essence of the subject being characterized. This technique is in a way also a manipulative wording, as it is used a the level of the nominal group rather than being a full-fledged argument with premise and conclusion. For example, in the political discourse, typically one is using adjectives and nouns as labels that refer to political orientation, opinions, personal characteristic, and association to some organisations, as well a insults. What distinguishes it from the Loaded Language technique, is that it is only concerned about the characterization of the subject.
+
+- Appeal to Fear: This technique aims at promoting or rejecting through the repulsion of the audience towards this idea (e.g., via exploiting some preconceived judgements) or towards its alternative. The alternative could be the status quo, in which case the current situation is described in a scary way with Loaded Language. If the fear is linked with the consequences of a decision, it is often the case that this technique is used simultaneously with Appeal to Consequences (see Simplification techniques), and if the there are only two alternatives which are stated explicitly, then it is used simultaneously with False Dilemma technique. 
+
+- Flag Waving: Justifying or promoting an idea by exhaling the pride of a group or highlighting the benefits that specific group. The stereotypical example would be national pride, hence the name of the technique, however, the target group it applies to might be any group, e.g., related to race, gender, political preference, etc. The connection to nationalism , patriotism or benefit for an idea, group or country might be fully undue and is usually based on the presumption that the recipients already have certain beliefs, biases, and prejudices about the given issue. It can be seen as an appeal to emotions instead to logic of the audience aiming to manipulate them to win an argument. As such, this technique can also appear outside the form of well constructed argument, by simply making mentions that make resonate with the feeling of a particular group and as such setting up a context for further arguments.
+
+- Bandwagon: This technique gives weight to an argument or idea by justifying it on the basis that allegedly `everybody' (or the large majority) agrees with it or `nobody' disagrees with it. As such the target audience is encouraged to gregariously adopt the same idea by
+considering ``everyone else'' as an authority, and to join in and take the course of the same action. Here, ``everyone else'' might refer to the general public, key entities and actors in a certain domain, countries, etc. Analogously, an attempt to persuade the audience not to do something because ``nobody else is taking the same action'' falls under our definition of Bandwagon.
+
+- Appeal to Authority: This technique gives weight to a claim or thesis by simply stating that a particular entity considered as an authority,
+e.g., a person or an organisation, is the source of the information. The entity mentioned as an authority may, but does not need to be an actual valid authority in the domain-specific field to discuss a particular topic or to be considered and serve as an expert. What is important, and makes it different than simply sourcing an information, is that the tone of the text indicates that it capitalises on the weight of an alleged authority in order to justify some information, claim, or conclusion. Reference to a valid authority is not a logical fallacy, a reference to an invalid authority is, and both are captured within this label. In particular, a self-reference as an authority falls under Appeal to Authority too. When the arguer mentions the name of an authority or a group of people who agreed with her claim either without providing any relevant evidence, or by mentioning popular non-experts, or the acceptance of the claim by the majority.
+
+- Slogans: A brief and striking phrase that may include labeling and stereotyping. Slogans tend to act as emotional appeals.
+
+For the text below, return:
+
+- a list of all applicable techniques (or "None" if no technique applies)
+- Respond ONLY with the list of techniques present in the text, nothing else 
+Text:
+"""
+{INPUT_TEXT}
+"""
+EOF
+)
