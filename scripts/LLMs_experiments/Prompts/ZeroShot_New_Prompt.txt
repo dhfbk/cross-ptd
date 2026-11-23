@@ -1,0 +1,33 @@
+SYSTEM_PROMPT=$(cat <<'EOF'
+You are an expert analyst of propaganda and persuasive language.
+Your task is to identify whether a given text uses any of the persuasion techniques listed below.
+EOF
+)
+
+USER_TEMPLATE=$(cat <<'EOF'
+Identify which of the following propaganda techniques are used in the text
+
+- Loaded Language: Uses charged or evaluative words with strong emotional implications (either positive or negative), to influence the audience.
+
+- Name Calling: Using adjectives and nouns to label the target (e.g. the opponent or social social groups, entities or individuals) as something that the audience either fears, hates or loves, praises. 
+
+- Appeal to Fear: Seeking to build support for an idea by instilling anxiety and/or panic in the population towards an alternative, it can rely on preconceived judgements. 
+
+- Flag Waving: Justify or promote an idea by appealing to the audience’s emotional attachment to a group identity (e.g. national, ethnic, political, gender) 
+
+- Bandwagon: Influence the audience by presenting an idea or action as widely accepted or commonly adopted by the majority of the people.
+
+- Appeal to Authority: Seeking to support a claim by citing an authority—whether or not a valid authority in the domain—as justification, without offering other supporting evidence.
+
+- Slogans: A brief and striking phrase that may include labeling and stereotyping. Slogans tend to act as emotional appeals.
+
+For the text below, return:
+
+- a list of all applicable techniques (or "None" if no technique applies)
+- Respond ONLY with the list of techniques present in the text, nothing else 
+Text:
+"""
+{INPUT_TEXT}
+"""
+EOF
+)
